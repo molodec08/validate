@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { ValidateComponent } from "./component/Validate";
+import { SomeComponent } from "./component/SomeComponent";
+import {useRef} from "react";
 
 function App() {
+  const ref = useRef(null);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ValidateComponent>
+        <SomeComponent>
+          <hr/>
+          2 component
+          <ValidateComponent ref={ref} />
+        </SomeComponent>
+        <SomeComponent>
+          <hr/>
+          3 component
+          <ValidateComponent  ref={ref}>
+            <hr/>
+            4 component
+            <ValidateComponent  ref={ref}/>
+          </ValidateComponent>
+        </SomeComponent>
+        <hr/>
+        5 component
+        <ValidateComponent  ref={ref}/>
+      </ValidateComponent >
     </div>
   );
 }
